@@ -5,5 +5,5 @@ Cargo.lock
 
 
 # folders
-/target
-./.idea
+target/
+.idea/
