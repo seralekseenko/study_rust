@@ -2,5 +2,5 @@
 
 Just fo study.
 
-Finished:
-- [Guess the number](https://rustlangua.github.io/rustbookua.github.io/ch02-00-guessing-game-tutorial.html)
+
+[Next theme → function](https://rustlangua.github.io/rustbookua.github.io/ch03-03-how-functions-work.html)
