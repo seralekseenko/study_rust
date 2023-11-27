@@ -2,6 +2,9 @@ fn main() {
     loop_example();
     breake_with_mark();
     try_continue_with_mark();
+    try_while();
+    try_for();
+
 }
 
 
@@ -79,3 +82,35 @@ fn try_continue_with_mark() {
     }
     println!("FINISH TRY CONTINUE");
 }
+
+fn try_while() {
+    println!("TRY WHILE");
+
+    let mut number = 3;
+    while number != 0 {
+        println!("{number}!");
+
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+}
+
+
+fn try_for() {
+    println!("TRY FOR EACH");
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("the value is: {element}");
+    }
+
+    println!("TRY FOR RANGE REVERSED");
+    for i in (0..=4).rev() {
+        println!("OLOLO {i}!");
+    }
+    println!("LIFTOFF!!!");
+
+}
+
+
