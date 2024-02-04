@@ -3,4 +3,4 @@
 Just fo study.
 
 
-[Next theme → function](https://rustlangua.github.io/rustbookua.github.io/ch03-03-how-functions-work.html)
+[Next theme → Using Structs to Structure Related Data](https://rustlangua.github.io/rustbookua.github.io/ch05-00-structs.html)
