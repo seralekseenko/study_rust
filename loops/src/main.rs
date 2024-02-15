@@ -7,7 +7,7 @@ fn main() {
 
 }
 
-
+// just test line.
 
 fn loop_example() {
     println!("this is a LOOP");
@@ -61,22 +61,22 @@ fn try_continue_with_mark() {
             println!("remaining = {remaining}");
             remaining -= 1;
 
-	    if remaining > 6 {
+            if remaining > 6 {
                 println!("continue internal");
-		continue;
+          continue;
             }
             if count < 3 {
-	        println!("continue external");
+              println!("continue external");
                 continue 'counting_up;
             }
             if remaining == 6 && count != 3 {
-	        println!("remaining: {remaining} → break internal loop!");
-		break;
-	    }
-	    if count == 3 {
-	        println!("count: {count} → break external loop!");
-		break 'counting_up;
-	    }
+              println!("remaining: {remaining} → break internal loop!");
+              break;
+            }
+            if count == 3 {
+              println!("count: {count} → break external loop!");
+              break 'counting_up;
+            }
         }
 
     }
