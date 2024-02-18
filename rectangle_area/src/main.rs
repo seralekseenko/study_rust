@@ -1,20 +1,21 @@
+#[derive(Debug)]
 struct Rectangle {
     width: usize,
     height: usize,
 }
 
 fn main() {
+    let scale: usize = 123;
     let rect1 = Rectangle {
-        width: 30,
+        width: dbg!(30 + scale),
         height: 50,
     };
 
-    println!(
-        "The area of the rectangle is {} square pixels.",
-        area(&rect1)
-    );
+    dbg!(&rect1);
+
+    //println!("Rect is: {:#?}", rect1);
 }
 
-fn area(rectangle: &Rectangle) -> usize {
-    rectangle.width * rectangle.height
-}
+//fn area(rectangle: &Rectangle) -> usize {
+//    rectangle.width * rectangle.height
+//}
