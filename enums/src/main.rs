@@ -58,11 +58,16 @@ fn use_option_match_plus_1(num: Option<usize>) -> Option<usize> {
 }
 
 fn main() {
-    let five = Some(5);
-    let six = use_option_match_plus_1(five);
-    println!("Six is: {}", six.expect("Six should not be empty!"));
-    let none = use_option_match_plus_1(None);
-    println!("None is none: {}", none.is_none());
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
+    }
+
+    //let five = Some(5);
+    //let six = use_option_match_plus_1(five);
+    //println!("Six is: {}", six.expect("Six should not be empty!"));
+    //let none = use_option_match_plus_1(None);
+    //println!("None is none: {}", none.is_none());
 
     //let coin_p = Coin::Penny;
     //println!("value of coin_p is: {}", coin_p.value_in_cents());
