@@ -1,19 +1,10 @@
-pub mod front_of_house {
+use crate::mealtime::breakfast::Breakfast as ololo;
+pub use crate::temporal::season::Season;
 
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
+pub mod mealtime;
+pub mod temporal;
 
-        pub fn seat_at_table() {}
-    }
-
-    mod serving {
-        //fn take_order() {}
-        //
-        //fn serve_order() {}
-        //
-        //fn take_payment() {}
-    }
-}
+pub mod front_of_house;
 
 pub fn deliver_order() {
     println!("The order has been delivered!");
@@ -28,17 +19,15 @@ pub mod back_of_house {
     }
 
     fn cook_order() {}
+
+    // structure
 }
 
 pub fn eat_at_restaurant() {
     println!("EATING");
-    // Absolute path
-    crate::front_of_house::hosting::add_to_waitlist();
-    // or
-    crate::front_of_house::hosting::seat_at_table();
-    // Relative path
-    front_of_house::hosting::add_to_waitlist();
 
-    // experiments
-    back_of_house::fix_incorrect_order();
+    // Order a breakfast in the summer with Rye toast
+    let meal = ololo::new(String::from("Rye")); // ololo is the alias of Breakfast struct
+
+    println!("I'd like {} toast please", meal.get_toast());
 }
