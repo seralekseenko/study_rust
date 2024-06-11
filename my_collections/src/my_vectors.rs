@@ -20,7 +20,7 @@ pub(crate) fn test_some_vectors() {
 
     let index: usize = 1;
     let some_element: &i32 = &i32_vec[index];
-    eprintln!("i32_vec index {} contains {}", &index, &some_element);
+    println!("i32_vec index {} contains {}", &index, &some_element);
     let the_same_element: Option<&i32> = i32_vec.get(index);
     match the_same_element {
         Some(the_same_element) => println!("The the_same_element is {}", the_same_element),
@@ -29,22 +29,23 @@ pub(crate) fn test_some_vectors() {
 }
 
 pub(crate) fn try_access_and_modify_vec() {
-    let mut v = vec![1, 2, 3, 4, 5];
+    let mut vector = vec![1, 2, 3, 4, 5];
 
-    let first = &v[0].clone();
+    let first = &vector[0].clone();
 
-    v.push(6);
+    vector.push(6);
 
     println!("The first element is: {}", first);
+    println!("Last element is: {}", vector.pop().unwrap());
 }
 
-pub(crate) fn iterate_throughth_vec() {
-    let mut v = vec![100, 32, 57, 66, 33, 55];
-    for element in &mut v {
+pub(crate) fn iterate_through_vec() {
+    let mut vector = vec![100, 32, 57, 66, 33, 55];
+    for element in &mut vector {
         *element *= 100; // * is the dereference operator
     }
     // just print without mutations
-    for element in &v {
+    for element in &vector {
         println!("{}", element);
     }
 }
@@ -58,7 +59,8 @@ enum SpreadsheetCell {
 }
 
 pub(crate) fn try_vec_with_enum() {
-    let mut one_row = vec![
+    let mut one_row: Vec<SpreadsheetCell> = Vec::new();
+    vec![
         SpreadsheetCell::Id(1),
         SpreadsheetCell::FloatPrecision(1.1),
         SpreadsheetCell::SomeText(String::from("First row in a table")),
