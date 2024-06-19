@@ -52,3 +52,31 @@ pub(crate) fn try_get_symbol_from_string() {
     let result2 = &string_object[15..27];
     println!("Slice from string_object: {}", result2);
 }
+
+pub(crate) fn play_with_indexes() {
+    let s = String::from("тестова строка Українською мовою");
+
+
+    // Визначаємо точні індекси символів
+    let start = s.char_indices().nth(15).unwrap().0;  // Початок підстроки "Українською"
+    let end = s.char_indices().nth(26).unwrap().0;    // Кінець підстроки "Українською"
+    println!("Start: {}, End: {}", start, end);
+
+    if let Some(sub) = s.get(start..end) {
+        println!("{}", sub); // "Українською"
+
+    } else {
+
+    }
+
+
+    let s2 = "тестова строка Українською мовою";
+
+    // Визначаємо точні індекси символів
+    let start2 = s2.char_indices().nth(15).unwrap().0;  // Початок підстроки "Українською"
+    let end2 = s2.char_indices().nth(25).unwrap().0;    // Кінець підстроки "Українською"
+
+    let sub2 = &s2[start2..end2];
+
+    println!("{}", sub2); // "Українською"
+}
