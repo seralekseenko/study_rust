@@ -6,15 +6,19 @@ mod my_hash_maps;
 
 
 fn main() {
-    test_hash_maps()
+    test_hash_maps();
     // strings_test();
     // vectors_test();
+
 }
 
 
 fn test_hash_maps() {
     my_hash_maps::test_hash_map_with_str_nums();
     my_hash_maps::try_get_in_loop();
+    my_hash_maps::test_ownership();
+    my_hash_maps::test_replace_value();
+    my_hash_maps::counter_with_map();
 }
 
 #[allow(dead_code)]
