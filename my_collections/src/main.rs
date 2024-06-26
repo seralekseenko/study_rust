@@ -1,18 +1,23 @@
+
+
 #[allow(unused)]
 mod my_vectors;
 #[allow(unused)]
 mod my_strings;
 mod my_hash_maps;
+mod exams_tasks;
 
 
 fn main() {
-    test_hash_maps();
+
+    //test_hash_maps();
     // strings_test();
     // vectors_test();
 
 }
 
 
+#[allow(dead_code)]
 fn test_hash_maps() {
     my_hash_maps::test_hash_map_with_str_nums();
     my_hash_maps::try_get_in_loop();
