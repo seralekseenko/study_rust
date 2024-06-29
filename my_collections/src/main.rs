@@ -5,7 +5,7 @@ mod my_vectors;
 #[allow(unused)]
 mod my_strings;
 mod my_hash_maps;
-mod exams_tasks;
+mod median_and_mode;
 
 
 fn main() {
