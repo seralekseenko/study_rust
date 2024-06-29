@@ -7,7 +7,8 @@
 ///
 /// # Return
 ///
-/// A tuple where the first value is the median, the second value is the mode.
+/// An Option of tuple where the first value is the median, the second value is the mode.
+/// If the vector is empty — return None.
 ///
 /// # Examples
 ///
@@ -17,15 +18,17 @@
 /// assert_eq!(median, 5);
 /// assert_eq!(mode, 2);
 /// ```
-fn get_median_and_mode(nums: Vec<isize>) -> (isize, isize) {
+fn get_median_and_mode(nums: Vec<isize>) -> Option<(isize, isize)> {
+    // TODO 0. check if empty
     // TODO 1. sorting if needed
     // TODO 2. compute median
     // TODO 3. compute mode
-    return (0, 0);
+    return Some((0, 0));
 }
 
 #[cfg(test)]
 mod tests {
+    use std::collections::HashSet;
     use rand::Rng;
     use statistical::median;
     use statistical::mode;
@@ -38,24 +41,32 @@ mod tests {
 
     /// Generates a large random vector of numbers.
     fn gen_huge_rand_vec(len: usize) -> Vec<isize> {
-        (0..len).map(move |_| rand::thread_rng().gen_range(isize::MIN..isize::MAX)).collect()
+        let mut rng = rand::thread_rng();
+        let mut set = HashSet::new();
+
+        (0..)
+            .map(move |_| rng.gen_range(isize::MIN..isize::MAX))
+            .filter(|&x| set.insert(x))  // Додає унікальні елементи в HashSet і пропускає дублікати
+            .take(len)  // Беремо тільки len елементів
+            .collect()
     }
 
     /// Generates a small random vector of numbers.
     fn gen_small_rand_vec(len: usize) -> Vec<isize> {
+        let mut set = HashSet::new();
         let mut rng = rand::thread_rng();
-        let mut vec: Vec<isize> = Vec::with_capacity(len);
 
-        for _ in 0..len {
-            vec.push(rng.gen_range(isize::MIN..isize::MAX));
+        while set.len() < len {
+            set.insert(rng.gen_range(isize::MIN..isize::MAX));
         }
-        return vec;
+
+        set.into_iter().collect()
     }
 
 
     #[test]
     fn experiment() {
-        let mut nums = vec![50, 30, 40, 1, 2, 3, 4, 5, 6, 7, 8, 2, 2];
+        let mut nums = vec![500, 300, 100, 200, 300, 400, 500, 600, 700, 800, 200, 200, 200, 500];
         println!("The median: {}", median(&nums));
         println!("The mode: {}", mode(&nums).unwrap());
         nums.sort();
@@ -63,34 +74,48 @@ mod tests {
     }
 
     #[test]
-    fn test_get_middle_and_mode() {
-        let nums = gen_rand_nums_vector(10);
-        let expected_median = median(&nums);
-        let expected_mode = mode(&nums).unwrap();
-
-        let (median, mode) = get_median_and_mode(nums);
-
-        assert_eq!(median, expected_median);
-        assert_eq!(mode, expected_mode);
+    fn odd_vec_no_duplicates() {
+        universal_test_median_mode(gen_rand_nums_vector(13))
     }
 
     #[test]
-    fn test_get_middle_and_mode_with_duplicates() {
-        let mut nums = vec![5; 10];
-        nums.append(gen_rand_nums_vector(2000).as_mut());
-        let expected_median = median(&nums);
-        let expected_mode = mode(&nums).unwrap();
+    fn odd_vec_with_duplicates() {
+        let mut nums = gen_rand_nums_vector(13);
+        nums.extend(vec![99, 99, 99, 99]);
+        universal_test_median_mode(nums);
+    }
 
-        let (median, mode) = get_median_and_mode(nums);
-        assert_eq!(median, expected_median);
-        assert_eq!(mode, expected_mode);
+    #[test]
+    fn even_vec_no_duplicates() {
+        universal_test_median_mode(gen_rand_nums_vector(14))
+    }
+
+    #[test]
+    fn even_vec_with_duplicates() {
+        let mut nums = gen_rand_nums_vector(14);
+        nums.extend(vec![99, 99, 99, 99]);
+        universal_test_median_mode(nums);
+    }
+
+    #[test]
+    fn try_vec_with_one_element() {
+        universal_test_median_mode(vec![1])
     }
 
     #[test]
     fn test_get_middle_and_mode_empty() {
-        let nums: Vec<isize> = vec![];
-        let (median, mode) = get_median_and_mode(nums);
-        assert_eq!(median, 0);
-        assert_eq!(mode, 0);
+        let empty_nums: Vec<isize> = vec![];
+        let result = get_median_and_mode(empty_nums);
+        assert_eq!(result, None);
+    }
+
+    fn universal_test_median_mode(test_vector: Vec<isize>) {
+        let expected_median = median(&test_vector);
+        let expected_mode = mode(&test_vector).unwrap();
+
+        let (median, mode) = get_median_and_mode(test_vector).unwrap();
+
+        assert_eq!(median, expected_median);
+        assert_eq!(mode, expected_mode);
     }
 }
