@@ -6,7 +6,7 @@ mod my_vectors;
 mod my_strings;
 mod my_hash_maps;
 mod median_and_mode;
-
+mod pig_latin;
 
 fn main() {
 
